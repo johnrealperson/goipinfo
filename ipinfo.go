@@ -18,7 +18,7 @@ func main() {
 	//}
 
 	//apiKey := os.Getenv("API_KEY")
-	apiKey := "c241bec690d0f217240381d069b6d41ee61bbf2f88f0f4829a15d4a2e3b4bfdd"
+	apiKey := "API_KEY_HERE"
 	scanner := bufio.NewScanner(os.Stdin)
 	fmt.Print("IP: ")
 	scanner.Scan()
