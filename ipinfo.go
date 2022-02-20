@@ -4,12 +4,22 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
-
-	//"log"
 	"net/http"
 	"os"
+	//"log"
 	//"github.com/joho/godotenv"
 )
+
+type VTIPResponse struct {
+	LastAnalysisStats [string]reputation
+}
+
+type reputation struct {
+	Harmless int 'json:"harmless"'
+	Malicious int 'json:"malicious"'
+	Suspicious int 'json:"suspicious"'
+	Undetected int 'json:"undetected"'
+}
 
 func main() {
 	//enverr := godotenv.Load()
@@ -43,5 +53,12 @@ func main() {
 
 	fmt.Println(res)
 	fmt.Println(string(body))
+
+	var repResponse = new(VTIPResponse)
+	err = json.Unmarshal(body, &reputation)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(repResponse)
 
 }
