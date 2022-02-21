@@ -8,11 +8,11 @@ terraform {
 }
 
 provider "google" {
-    credentials = file("~\Downloads\flash-flow-341718-c0afb0b97bc4.json")
+    credentials = file("YOUR_DOWNLOAD_FILE_CREDENTIALS_PATH_HERE.json")
 
-    project = "<PROJECT_ID>"
-    region  = "us-central1"
-    zone    = "us-central1-c"
+    project = "YOUR PROJECT NAME HERE"
+    region  = "YOUR REGION"
+    zone    = "YOUR ZONE"
 }
 
 resource "google_compute_network" "vpc_network" {
