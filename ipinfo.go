@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"net"
 	//"log"
 	//"github.com/joho/godotenv"
 )
@@ -33,6 +34,7 @@ func main() {
 	fmt.Print("IP: ")
 	scanner.Scan()
 	ip := scanner.Text()
+	checkIPAddress(ip)
 	url := "https://www.virustotal.com/api/v3/ip_addresses/" + ip
 
 	req, _ := http.NewRequest("GET", url, nil)
@@ -51,7 +53,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(res)
+	//fmt.Println(res)
 	fmt.Println(string(body))
 
 	var repResponse = new(VTIPResponse)
@@ -61,4 +63,12 @@ func main() {
 	}
 	fmt.Println(repResponse)
 
+}
+
+func checkIPAddress(ip string) {
+    if net.ParseIP(ip) == nil {
+        fmt.Printf("IP Address: %s - Invalid\n", ip)
+    } else {
+        fmt.Printf("IP Address: %s - Valid\n", ip)
+    }
 }
